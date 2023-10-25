@@ -5,7 +5,7 @@ import request from "supertest";
 //import app from app.js
 import app from "./app.js";
 // import resetdatabase
-import { resetDatabase } from "./Database/scripts/reset-database.js";
+import { resetDatabase } from "./Database/helper.js";
 
 // Test endpoint: getTopics
 test("GET /topics works", async function () {
@@ -17,9 +17,10 @@ test("GET /topics works", async function () {
 
   // store the response body in a responseBody variable
   const responseBody = response.body;
+  console.log(responseBody);
 
   // check that the data matches what is expected
-  responseBody.payload.forEach((responseBody) => {
+  responseBody.data.forEach((responseBody) => {
     expect(responseBody.id).toBeTypeOf("number");
   });
 });
