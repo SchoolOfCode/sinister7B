@@ -9,7 +9,6 @@ export async function getTopics(req, res) {
   res.status(200).json({ status: "success", data: topics });
 }
 
-
 // create addTopics function
 export async function createTopic(req, res) {
   // store input data in avariable
@@ -18,4 +17,20 @@ export async function createTopic(req, res) {
   const newTopic = await topicsModel.createTopic(input);
   // response status set to 201 and JSend for body
   res.status(201).json({ status: "success", data: newTopic });
+}
+
+// delete topics function
+export async function deleteTopicById(req, res) {
+  // store the request id in an id variable
+  const id = req.params.id;
+  // store delete topic function from topics model in a topic variable
+  const topic = await topicsModel.deleteTopicById(id);
+  // Flag 404 if the id and status are not found
+  if (!topic) {
+    return res
+      .status(404)
+      .json({ status: "fail", data: { msg: "Topic not found" } });
+  }
+  // return status 200 and success if found
+  res.status(200).json({ status: "success", data: topic });
 }
