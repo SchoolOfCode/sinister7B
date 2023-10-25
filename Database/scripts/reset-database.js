@@ -2,7 +2,7 @@
 import { pool } from "../index.js";
 
 // create async function which resets the database
-async function resetDatabase() {
+export async function resetDatabase() {
   try {
     // drop table if exists
     await pool.query(`DROP TABLE IF EXISTS topics CASCADE;`);
