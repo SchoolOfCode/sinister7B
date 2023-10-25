@@ -22,5 +22,9 @@ test("GET /topics works", async function () {
   // check that the data matches what is expected
   responseBody.data.forEach((responseBody) => {
     expect(responseBody.id).toBeTypeOf("number");
+
+    expect(responseBody.topic).toBeTypeOf("string");
+    expect(responseBody.content).toBeTypeOf("string");
+    expect(responseBody.added_date).toBeTypeOf("string");
   });
 });
