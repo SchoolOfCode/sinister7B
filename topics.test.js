@@ -35,3 +35,40 @@ test("GET /topics works", async function () {
     expect(response.headers["content-type"]).toMatch("application/json");
   });
 });
+
+
+// Test endpoint: createTopics
+test("POST /topics works", async function () {
+  // call the rest database
+  await resetDatabase();
+
+  // call the request and pass in the express app
+  const response = await request(app)
+  .post("/topics")
+  .send({
+    topic: "array",
+    content: "a group of item",
+    added_date: "2023-10-25"
+  })
+  .set("content-type", "application/json");
+
+  // store response body in variable
+  const responseBody = response.body;
+
+  // assert the response status
+  expect(response.status).toBe(201);
+
+  // assert response body to be expected
+  expect(responseBody).toEqual({
+    status: "success",
+    data: {
+      id: 4,
+      topic: "array",
+      content: "a group of item",
+      added_date: "2023-10-24T23:00:00.000Z"
+    }
+  })
+
+  // assert the response header
+  expect(response.header["content-type"]).toMatch(/json/);
+})
