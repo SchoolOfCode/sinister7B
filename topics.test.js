@@ -17,7 +17,7 @@ test("GET /topics works", async function () {
 
   // store the response body in a responseBody variable
   const responseBody = response.body;
-  console.log(responseBody);
+  //   console.log(responseBody);
 
   // check that the data matches what is expected
   responseBody.data.forEach((responseBody) => {
@@ -88,4 +88,38 @@ test("DELETE /topics by id works", async function () {
   expect(response.header["content-type"]).toBe(
     "application/json; charset=utf-8"
   );
+});
+
+// test POST invalid request
+test("POST /topics invalid req works", async function () {
+  // call reset database
+  await resetDatabase();
+  // call request and pass in the express app
+  const response = await request(app)
+    .post("/topics")
+    .send({
+      tpic: "array",
+      content: "A string",
+      added_date: "2023-10-25",
+    })
+    .set("Accept", "application/json");
+  // store response.body in responseBody
+  const responseBody = await response.body;
+  // Assert the response body is an object
+  expect(typeof responseBody).toBe("object");
+  //Assert the status code is 400
+  expect(response.status).toBe(400);
+  // asssert the user sucess is false
+  expect(responseBody.success).toBe(false);
+
+  // expect header to be application/json
+  expect(response.header["content-type"]).toBe(
+    "application/json; charset=utf-8"
+  );
+
+  // expect the error body message
+  expect(responseBody.error).toBe(
+    "Please provide a valid 'topic', 'content' or 'Date'"
+  );
+  console.log(responseBody);
 });
