@@ -35,13 +35,20 @@ export async function createTopic(req, res) {
 export async function deleteTopicById(req, res) {
   // store the request id in an id variable
   const id = req.params.id;
+  // const deleted = topicsModel.deleteTopicById(id);
+  // if (!deleted) {
+  //   res.status(404).json({
+  //     success: false,
+  //     error: "No topic found with this id."
+  //   })
+  // }
   // store delete topic function from topics model in a topic variable
   const topic = await topicsModel.deleteTopicById(id);
   // Flag 404 if the id and status are not found
   if (!topic) {
     return res
       .status(404)
-      .json({ status: "fail", data: { msg: "Topic not found" } });
+      .json({ success: false, error: "Topic not found" });
   }
   // return status 200 and success if found
   res.status(200).json({ status: "success", data: topic });

@@ -123,3 +123,25 @@ test("POST /topics invalid req works", async function () {
   );
   console.log(responseBody);
 });
+
+
+// test DELETE is invalid
+test("DELETE /topics/id is invalid", async function () {
+  // call to reset database
+  await resetDatabase();
+  // call request and pass in the express app
+  const noId = 5;
+  const response = await request(app).delete(`/topics/${noId}`);
+  // store response body
+  const responseBody = await response.body;
+  // assert the type of body is object
+  expect(typeof responseBody).toBe("object");
+  // assert success to be false
+  expect(responseBody.success).toBe(false);
+  // assert status to be 404
+  expect(response.status).toBe(404);
+  //assert error message is as expected
+  expect(responseBody.error).toBe("Topic not found");
+  //assert header
+  expect(response.header["content-type"]).toBe("application/json; charset=utf-8");
+})
