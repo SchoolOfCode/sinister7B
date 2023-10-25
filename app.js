@@ -5,7 +5,7 @@ import express from "express";
 import morgan from "morgan";
 
 //import routes from routes handler files???
-//import {???} from ;
+import {topicsRouter} from "./routes/topicRoutes.js";
 
 //export const app will be set as default
 const app = express ();
@@ -14,10 +14,10 @@ const app = express ();
 
 app.use (morgan("dev"));
 app.use (express.json());
+app.use ("/api/topics", topicsRouter);
 
-//app.use (???)
-
-//error handling
+//    error handling
+// Error handler for incorrect filepath
 app.use(function (_req, res, _next) {
     res.status(404).json({
       success: false,
