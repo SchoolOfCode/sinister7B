@@ -1,0 +1,28 @@
+{
+  "name": "sinister7b",
+  "version": "1.0.0",
+  "description": "Feel free to delete this and start from scratch.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon -r dotenv/config server.js",
+    "reset-db": "reset-database.js",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "morgan": "^1.10.0",
+    "playwright": "^1.39.0",
+    "supertest": "^6.3.3",
+    "vitest": "^0.34.6"
+  }
+}
