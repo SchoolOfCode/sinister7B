@@ -8,3 +8,14 @@ export async function getTopics(req, res) {
   // response status and body for get topics
   res.status(200).json({ status: "success", data: topics });
 }
+
+
+// create addTopics function
+export async function createTopic(req, res) {
+  // store input data in avariable
+  const input = req.body;
+  // store createTopic function to a varable
+  const newTopic = await topicsModel.createTopic(input);
+  // response status set to 201 and JSend for body
+  res.status(201).json({ status: "success", data: newTopic });
+}
