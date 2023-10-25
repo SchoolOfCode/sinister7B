@@ -1,5 +1,5 @@
 //import the pool object so our helper functions can interact with the PostgreSQL database
-import { pool } from "..Database/index.js";
+import { pool } from "../Database/index.js";
 
 // Get topics function from the databse using SELECT
 export async function getTopics () {

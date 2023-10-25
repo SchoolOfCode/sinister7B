@@ -8,8 +8,8 @@ import * as topicsController from "../controllers/topicsController.js";
 export const topicsRoutes = express.Router();
 
 // GET route
-topicsRoutes.get("/topics", topicsController.getTopics);
+topicsRoutes.get("/", topicsController.getTopics);
 // POST route
-topicsRoutes.post("/topics", topicsController.createTopic);
+topicsRoutes.post("/", topicsController.createTopic);
 //DELETE route
-topicsRoutes.delete("/topics/:id", topicsController.deleteTopicById);
+topicsRoutes.delete("/:id", topicsController.deleteTopicById);
