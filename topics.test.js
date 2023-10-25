@@ -36,7 +36,6 @@ test("GET /topics works", async function () {
   });
 });
 
-
 // Test endpoint: createTopics
 test("POST /topics works", async function () {
   // call the rest database
@@ -44,13 +43,13 @@ test("POST /topics works", async function () {
 
   // call the request and pass in the express app
   const response = await request(app)
-  .post("/topics")
-  .send({
-    topic: "array",
-    content: "a group of item",
-    added_date: "2023-10-25"
-  })
-  .set("content-type", "application/json");
+    .post("/topics")
+    .send({
+      topic: "array",
+      content: "a group of item",
+      added_date: "2023-10-25",
+    })
+    .set("content-type", "application/json");
 
   // store response body in variable
   const responseBody = response.body;
@@ -65,10 +64,28 @@ test("POST /topics works", async function () {
       id: 4,
       topic: "array",
       content: "a group of item",
-      added_date: "2023-10-24T23:00:00.000Z"
-    }
-  })
+      added_date: "2023-10-24T23:00:00.000Z",
+    },
+  });
 
   // assert the response header
   expect(response.header["content-type"]).toMatch(/json/);
-})
+});
+
+// Test the delete from api
+test("DELETE /topics by id works", async function () {
+  //call reset database
+  await resetDatabase();
+  // call request and pass in the express app
+  const response = await request(app).delete("/topics/3");
+  // store response body in a variable
+  const responseBody = await response.body;
+  // assert the body is an object
+  expect(responseBody).toBeTypeOf("object");
+  // assert that the status is 200
+  expect(response.status).toBe(200);
+  // assert that the header is application/json
+  expect(response.header["content-type"]).toBe(
+    "application/json; charset=utf-8"
+  );
+});
