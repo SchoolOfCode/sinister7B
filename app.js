@@ -14,7 +14,7 @@ const app = express ();
 
 app.use (morgan("dev"));
 app.use (express.json());
-app.use ("/api/topics", topicsRouter);
+app.use ("/topics", topicsRouter);
 
 //    error handling
 // Error handler for incorrect filepath
