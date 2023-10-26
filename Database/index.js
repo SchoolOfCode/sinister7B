@@ -7,7 +7,7 @@ const connectionString = process.env.DB_CONNECTION;
 // check if the connection string is not defined, if so throw an error
 if (!connectionString) {
     throw new Error(
-        "No DE_CONNECTION defined. Did you load in your env variables?"
+        "No DB_CONNECTION defined. Did you load in your env variables?"
     );
 }
 
