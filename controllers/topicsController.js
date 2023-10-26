@@ -5,17 +5,18 @@ import * as topicsModel from "../models/topicsModel.js";
 export async function getTopics(req, res) {
   // store getTopics function in topics variable
   const topics = await topicsModel.getTopics();
-  console.log(topics);
+  // console.log(topics);
   // response status and body for get topics
   res.status(200).json({ status: "success", data: topics });
 }
 
 // create addTopics function
 export async function createTopic(req, res) {
+
   const somethingIsMissing =
     req.body.topic === undefined ||
-    req.body.content === undefined ||
-    req.body.added_date === undefined;
+    req.body.content === undefined 
+    // req.body.added_date === undefined;
   // if something is missing -error handling
   if (somethingIsMissing) {
     res.status(400).json({
