@@ -16,7 +16,7 @@ export async function resetDatabase() {
     ); 
     `);
   
-    // Seed the topics table
+    // Seed the topics table 
     await pool.query(`
     INSERT INTO topics (topic, content, added_date)
     VALUES
