@@ -5,6 +5,7 @@ import * as topicsModel from "../models/topicsModel.js";
 export async function getTopics(req, res) {
   // store getTopics function in topics variable
   const topics = await topicsModel.getTopics();
+  console.log(topics);
   // response status and body for get topics
   res.status(200).json({ status: "success", data: topics });
 }
@@ -46,9 +47,7 @@ export async function deleteTopicById(req, res) {
   const topic = await topicsModel.deleteTopicById(id);
   // Flag 404 if the id and status are not found
   if (!topic) {
-    return res
-      .status(404)
-      .json({ success: false, error: "Topic not found" });
+    return res.status(404).json({ success: false, error: "Topic not found" });
   }
   // return status 200 and success if found
   res.status(200).json({ status: "success", data: topic });
