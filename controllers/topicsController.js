@@ -12,11 +12,9 @@ export async function getTopics(req, res) {
 
 // create addTopics function
 export async function createTopic(req, res) {
-
   const somethingIsMissing =
-    req.body.topic === undefined ||
-    req.body.content === undefined 
-    // req.body.added_date === undefined;
+    req.body.topic === undefined || req.body.content === undefined;
+  // req.body.added_date === undefined;
   // if something is missing -error handling
   if (somethingIsMissing) {
     res.status(400).json({
