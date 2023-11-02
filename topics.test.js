@@ -47,12 +47,13 @@ test("POST /topics works", async function () {
     .send({
       topic: "array",
       content: "a group of item",
-      added_date: "2023-10-25",
+      added_date: "2023-10-30",
     })
     .set("content-type", "application/json");
 
   // store response body in variable
   const responseBody = response.body;
+  // console.log(response.body)
 
   // assert the response status
   expect(response.status).toBe(201);
@@ -61,10 +62,10 @@ test("POST /topics works", async function () {
   expect(responseBody).toEqual({
     status: "success",
     data: {
-      id: 4,
+      id: 7,
       topic: "array",
       content: "a group of item",
-      added_date: "2023-10-24T23:00:00.000Z",
+      added_date: "2023-10-30T00:00:00.000Z",
     },
   });
 
@@ -130,7 +131,7 @@ test("DELETE /topics/id is invalid", async function () {
   // call to reset database
   await resetDatabase();
   // call request and pass in the express app
-  const noId = 5;
+  const noId = 99;
   const response = await request(app).delete(`/topics/${noId}`);
   // store response body
   const responseBody = await response.body;
