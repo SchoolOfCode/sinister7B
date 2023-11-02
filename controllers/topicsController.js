@@ -27,6 +27,8 @@ export async function createTopic(req, res) {
   const input = req.body;
   // store createTopic function to a varable
   const newTopic = await topicsModel.createTopic(input);
+  console.log(newTopic);
+  console.log("Controller");
   // response status set to 201 and JSend for body
   res.status(201).json({ status: "success", data: newTopic });
 }
