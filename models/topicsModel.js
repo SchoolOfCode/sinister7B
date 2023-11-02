@@ -8,8 +8,8 @@ export async function getTopics() {
 
   // Send query to database using query text
   const data = await pool.query(queryText);
-  console.log(data.rows);
-  console.log("Models^")
+  // console.log(data.rows);
+  // console.log("Models^")
   // return the rows from data
   return data.rows;
 }
